@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/User');
-const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin } = require('./verifyToken');
+const { verifyTokenAndAuthorization, verifyTokenAndAdmin } = require('./verifyToken');
 
 // update an user 
 router.put('/:id', verifyTokenAndAuthorization,async (req, res) => {
@@ -32,7 +32,7 @@ router.delete('/:id', verifyTokenAndAuthorization, async (req, res) => {
 router.get('/find:id', verifyTokenAndAdmin, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
-    const {password, ...others} = user._doc;
+    const { password, ...others } = user._doc;
     res.status(200).json(others);
   }
   catch(err) {

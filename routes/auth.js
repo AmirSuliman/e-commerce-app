@@ -36,7 +36,7 @@ router.post("/login", async (req, res) => {
     }, process.env.JWT_SEC, { expiresIn: "4d"});
 
     const {password, ...others} = user._doc;
-    res.status(200).json({...others, accessToken: accessToken});
+    res.status(200).json({ ...others, accessToken: accessToken });
 
   } catch(err) {
     res.status(500).json("some error occured",err);
